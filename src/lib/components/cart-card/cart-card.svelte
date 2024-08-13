@@ -11,14 +11,14 @@
 </script>
 
 <Card class="flex h-44 md:h-48">
-	<div class="h-full w-auto overflow-hidden shrink-0">
-		<img src={item.image} alt={item.title} class="object-cover h-full" />
+	<div class="h-full w-auto shrink-0 overflow-hidden">
+		<img src={item.image} alt={item.title} class="h-full object-cover" />
 	</div>
 
 	<CardContent class="flex h-full w-full flex-col justify-between py-6">
 		<div class="flex flex-col">
-			<h3 class="line-clamp-2 font-heading text-lg leading-5">{item.title}</h3>
-			<h4 class="font-heading text-lg font-semibold">
+			<h3 class="text-md line-clamp-2 font-heading leading-5 md:text-lg">{item.title}</h3>
+			<h4 class="text-md font-heading font-semibold md:text-lg">
 				{formatPrice(item.price, item.currency)}
 			</h4>
 		</div>

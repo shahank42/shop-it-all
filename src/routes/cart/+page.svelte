@@ -11,7 +11,7 @@
 	import { ChevronRight } from 'lucide-svelte';
 </script>
 
-<section class="w-full bg-background py-12 text-foreground">
+<section class="w-full bg-background py-8 md:py-12 text-foreground">
 	<MaxWidthWrapper class="grid grid-cols-1 gap-8 md:grid-cols-[2fr_1fr]">
 		<div class="flex flex-col gap-3">
 			{#each $cart.items as item}

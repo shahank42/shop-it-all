@@ -4,11 +4,11 @@
 	import products from '$lib/db.json'
 </script>
 
-<section class="w-full py-12 bg-background text-foreground">
+<section class="w-full py-8 md:py-12 bg-background text-foreground">
 	<MaxWidthWrapper class="flex flex-col gap-12">
 		<div class="flex flex-col">
-			<h1 class="text-4xl font-bold tracking-tight">Featured Products</h1>
-			<p class="font-body text-lg text-muted-foreground">
+			<h1 class="text-3xl md:text-4xl font-bold tracking-tight">Featured Products</h1>
+			<p class="font-body text-md md:text-lg text-muted-foreground">
 				Discover our latest collection of stylish and high-quality products.
 			</p>
 		</div>
