@@ -21,7 +21,7 @@
 		<Button
 			on:click={() => {
 				hasInteracted = !hasInteracted;
-				cart.removeItem(product.id);
+				cart.deleteItem(product.id);
 			}}
 			class="w-42 overflow-hidden rounded-none"
 			variant="default"
