@@ -12,14 +12,16 @@
 		<div class="flex flex-col gap-6">
 			<div class="flex flex-col">
 				<h1 class="text-3xl font-semibold">My Cart</h1>
-				<p class="">
-					Your cart is empty! Looks like it's time to go <a
-						href="/"
-						class={cn(buttonVariants({ variant: 'link' }), 'px-0')}
-					>
-						shopping!
-					</a>
-				</p>
+				{#if $cart.items.length === 0}
+					<p class="">
+						Your cart is empty! Looks like it's time to go <a
+							href="/"
+							class={cn(buttonVariants({ variant: 'link' }), 'px-0')}
+						>
+							shopping!
+						</a>
+					</p>
+				{/if}
 			</div>
 			<div class="flex flex-col gap-3">
 				{#each $cart.items as item}
