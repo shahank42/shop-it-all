@@ -26,43 +26,38 @@
 	let count = $state(value);
 </script>
 
-<div class="flex">
+<div class="flex items-center gap-1">
 	<Button
 		size="icon"
-		class="border"
 		on:click={() => {
-			if (!min || count > min) count--;
-			// onValueChange && onValueChange('decrement', count);
+			if (min !== undefined && count > min) count--;
 			counterActions && counterActions.decrement && counterActions.decrement(count);
 		}}
 		disabled={!!min && count <= min}
 	>
-		<MinusIcon />
+		<MinusIcon class="size-5" />
 	</Button>
 
 	<Input
 		type="number"
 		id="quantity"
-		class="w-14 border-l-0 border-r-0 text-center font-heading [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+		class="w-10 text-center font-heading [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
 		bind:value={count}
 		on:change={(e) => {
 			if (max && count > max) count = max;
 			if (min && count < min) count = min;
-			// onValueChange && onValueChange('input', count);
 			counterActions && counterActions.input && counterActions.input(count);
 		}}
 	/>
 
 	<Button
 		size="icon"
-		class="border"
 		on:click={() => {
-			if (!max || count < max) count++;
-			// onValueChange && onValueChange('increment', count);
+			if (max !== undefined && count < max) count++;
 			counterActions && counterActions.increment && counterActions.increment(count);
 		}}
 		disabled={!!max && count >= max}
 	>
-		<PlusIcon />
+		<PlusIcon class="size-5" />
 	</Button>
 </div>

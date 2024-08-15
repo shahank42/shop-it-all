@@ -4,6 +4,7 @@
 	import { cart } from '$lib/stores/cartStore';
 	import type { Product } from '$lib/types';
 	import { ShoppingCartIcon } from 'lucide-svelte';
+	import ProductCardCounter from './product-card-counter.svelte';
 
 	const {
 		product
@@ -21,12 +22,14 @@
 				hasInteracted = !hasInteracted;
 				cart.deleteItem(product.id);
 			}}
-			class="w-42 overflow-hidden rounded-none"
+			class="hidden w-full overflow-hidden lg:block"
 			variant="default"
 		>
 			<Motion initial={{ y: -50 }} animate={{ y: 0 }} let:motion>
 				<span use:motion class="relative block h-full w-full font-body font-semibold">
-					<span class="flex items-center gap-3"><ShoppingCartIcon /> Added</span>
+					<span class="flex w-full items-center justify-center gap-3">
+						<ShoppingCartIcon /> Added
+					</span>
 				</span>
 			</Motion>
 		</Button>
@@ -38,7 +41,7 @@
 				hasInteracted = !hasInteracted;
 				cart.addItem(product);
 			}}
-			class="w-42 overflow-hidden rounded-none"
+			class="w-full overflow-hidden"
 			variant="secondary"
 		>
 			<Motion initial={{ x: 0 }} exit={{ x: 50, transition: { duration: 0.1 } }} let:motion>

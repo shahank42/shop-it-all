@@ -11,19 +11,23 @@
 </script>
 
 <Card class="flex h-44 md:h-48">
-	<div class="h-full w-auto shrink-0 overflow-hidden">
+	<div
+		class="h-full w-auto shrink-0 overflow-hidden rounded-bl-lg rounded-tl-lg border-r border-dotted"
+	>
 		<img src={item.image} alt={item.title} class="h-full object-cover" />
 	</div>
 
-	<CardContent class="flex h-full w-full flex-col justify-between py-6">
-		<div class="flex flex-col">
-			<h3 class="text-md line-clamp-2 font-heading leading-5 md:text-lg">{item.title}</h3>
-			<div class="flex items-center justify-between">
-				<h4 class="text-md font-heading font-semibold md:text-lg">
-					{formatPrice(item.price * item.quantity, item.currency)}
-				</h4>
-				<p class="text-sm font-bold">{item.stock} in stock</p>
+	<CardContent class="flex h-full w-full flex-col justify-between gap-3 px-3 py-6 lg:px-6">
+		<div class="flex h-full flex-col justify-between">
+			<div class="flex flex-col justify-between">
+				<h3 class="lg:text-md line-clamp-2 font-heading text-sm leading-5 md:text-base">
+					{item.title}
+				</h3>
+				<p class="text-sm text-muted-foreground">{item.stock} in stock</p>
 			</div>
+			<h4 class="text-md font-heading font-semibold md:text-lg">
+				{formatPrice(item.price * item.quantity, item.currency)}
+			</h4>
 		</div>
 
 		<div class="flex w-full items-center justify-between">

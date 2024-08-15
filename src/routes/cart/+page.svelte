@@ -14,10 +14,13 @@
 
 <section class="w-full bg-background py-8 text-foreground md:py-12">
 	<MaxWidthWrapper class="grid grid-cols-1 gap-8 md:grid-cols-[2fr_1fr]">
-		<div class="flex flex-col gap-3">
-			{#each $cart.items as item}
-				<CartCard {item} />
-			{/each}
+		<div class="flex flex-col gap-6">
+			<h1 class="text-3xl font-semibold">My Cart</h1>
+			<div class="flex flex-col gap-3">
+				{#each $cart.items as item}
+					<CartCard {item} />
+				{/each}
+			</div>
 		</div>
 
 		<CartDetails />

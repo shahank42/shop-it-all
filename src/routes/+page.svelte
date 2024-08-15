@@ -7,13 +7,13 @@
 <section class="w-full bg-background py-8 text-foreground md:py-12">
 	<MaxWidthWrapper class="flex flex-col gap-12">
 		<div class="flex flex-col">
-			<h1 class="text-3xl font-bold tracking-tight md:text-4xl">Featured Products</h1>
+			<h1 class="text-3xl font-bold tracking-tight md:text-4xl">Fresh fits just for you!</h1>
 			<p class="text-md font-body text-muted-foreground md:text-lg">
 				Discover our latest collection of stylish and high-quality products.
 			</p>
 		</div>
 
-		<div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+		<div class="grid gap-3 grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
 			{#each products as product}
 				<ProductCard {product} />
 			{/each}

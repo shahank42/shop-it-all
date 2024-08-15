@@ -13,32 +13,32 @@
 
 <Card class="h-fit">
 	<CardHeader>
-		<CardTitle class="font-heading">Cart Summary</CardTitle>
+		<CardTitle class="font-heading text-xl">Summary</CardTitle>
 	</CardHeader>
 
-	<CardContent class="flex flex-col gap-4">
-		<div class="flex w-full items-center justify-between">
-			<span class="font-heading">Subtotal:</span>
-			<span class="font-heading font-bold">{formatPrice($cart.subTotal, 'INR')}</span>
+	<CardContent class="flex flex-col gap-6">
+		<div class="flex flex-col gap-1">
+			<div class="flex w-full items-center justify-between">
+				<span class="font-heading text-md">Subtotal:</span>
+				<span class="font-heading text-md font-bold">{formatPrice($cart.subTotal, 'INR')}</span>
+			</div>
+
+			<div class="flex w-full items-center justify-between">
+				<span class="font-heading text-md">Discount:</span>
+				<span class="font-heading text-md font-bold">
+					{formatPrice($cart.discount ? $cart.total - $cart.subTotal : 0, 'INR')}
+				</span>
+			</div>
 		</div>
 
 		<div class="flex w-full items-center justify-between">
-			<span class="font-heading">Discount:</span>
-			<span class="font-heading font-bold">
-				{formatPrice($cart.discount ? $cart.total - $cart.subTotal : 0, 'INR')}
-			</span>
-		</div>
-
-		<Separator />
-
-		<div class="flex w-full items-center justify-between">
-			<span class="font-heading">Total:</span>
-			<span class="font-heading font-bold">{formatPrice($cart.total, 'INR')}</span>
+			<span class="font-heading text-md">Total:</span>
+			<span class="font-heading text-md font-bold">{formatPrice($cart.total, 'INR')}</span>
 		</div>
 
 		{#if $cart.discount}
 			{#key $cart.discount}
-				<div role="alert" class="flex border bg-secondary text-secondary-foreground">
+				<div role="alert" class="flex rounded-md border bg-secondary text-secondary-foreground">
 					<div class="flex-1 p-4">
 						<strong class="block font-body font-semibold">{$cart.discount?.code}</strong>
 						<p class="mt-1 font-body text-sm">{$cart.discount?.description}</p>
@@ -87,7 +87,7 @@
 
 	<CardFooter>
 		<Button
-			class="flex w-full gap-2 font-body transition-all duration-500 ease-in-out hover:gap-3"
+			class="flex w-full gap-2 rounded-md font-body transition-all duration-500 ease-in-out hover:gap-3"
 			size="lg"
 		>
 			Proceed to Checkout <ChevronRight />
