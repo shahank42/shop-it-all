@@ -1,14 +1,14 @@
 <script lang="ts">
 	import MaxWidthWrapper from '$lib/components/max-width-wrapper.svelte';
 	import ProductCard from '$lib/components/product-card/product-card.svelte';
-	import products from '$lib/db.json'
+	import { products } from '$lib/db.json';
 </script>
 
-<section class="w-full py-8 md:py-12 bg-background text-foreground">
+<section class="w-full bg-background py-8 text-foreground md:py-12">
 	<MaxWidthWrapper class="flex flex-col gap-12">
 		<div class="flex flex-col">
-			<h1 class="text-3xl md:text-4xl font-bold tracking-tight">Featured Products</h1>
-			<p class="font-body text-md md:text-lg text-muted-foreground">
+			<h1 class="text-3xl font-bold tracking-tight md:text-4xl">Featured Products</h1>
+			<p class="text-md font-body text-muted-foreground md:text-lg">
 				Discover our latest collection of stylish and high-quality products.
 			</p>
 		</div>

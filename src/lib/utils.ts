@@ -2,6 +2,8 @@ import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { cubicOut } from "svelte/easing";
 import type { TransitionConfig } from "svelte/transition";
+import { discounts } from "./db.json"
+import type { Discount, DiscountType } from "./types";
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
@@ -61,11 +63,19 @@ export const flyAndScale = (
 	};
 };
 
-const currencyFormatter = new Intl.NumberFormat('en-US', {
-	style: 'currency',
-	currency: 'INR',
-});
-
 export const formatPrice = (value: number, currency: string) => {
-	return currencyFormatter.format(value)
+	return (new Intl.NumberFormat('en-US', {
+		style: 'currency',
+		currency,
+	})).format(value)
 }
+
+export const getDiscount = ((code: string): Discount | null => {
+	const discount = discounts.filter((discount) => discount.code === code)[0]
+	if (!discount) return null;
+
+	return {
+		...discount,
+		type: discount.type as DiscountType,
+	}
+})
