@@ -20,7 +20,7 @@
 			<h3 class="text-md line-clamp-2 font-heading leading-5 md:text-lg">{item.title}</h3>
 			<div class="flex items-center justify-between">
 				<h4 class="text-md font-heading font-semibold md:text-lg">
-					{formatPrice(item.price, item.currency)}
+					{formatPrice(item.price * item.quantity, item.currency)}
 				</h4>
 				<p class="text-sm font-bold">{item.stock} in stock</p>
 			</div>
