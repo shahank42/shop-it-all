@@ -28,18 +28,10 @@
 				min={1}
 				max={5}
 				value={item.quantity}
-				onValueChange={(action, count) => {
-					switch (action) {
-						case 'increment':
-							cart.addItem(item);
-							break;
-						case 'decrement':
-							cart.removeItem(item.id);
-							break;
-						case 'input':
-							cart.setQuantityOf(item.id, count);
-							break;
-					}
+				counterActions={{
+					increment: () => cart.addItem(item),
+					decrement: () => cart.removeItem(item.id),
+					input: (value) => cart.setQuantityOf(item.id, value)
 				}}
 			/>
 
@@ -49,7 +41,8 @@
 				on:click={() => {
 					cart.deleteItem(item.id);
 				}}
-				><Trash2Icon />
+			>
+				<Trash2Icon />
 			</Button>
 		</div>
 	</CardContent>

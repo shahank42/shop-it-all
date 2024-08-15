@@ -9,12 +9,16 @@
 
 	let {
 		value,
-		onValueChange,
+		counterActions,
 		min,
 		max
 	}: {
 		value: number;
-		onValueChange?: (action: CounterAction, count: number) => undefined;
+		counterActions?: {
+			increment?: (value: number) => void | undefined;
+			decrement?: (value: number) => void | undefined;
+			input?: (value: number) => void | undefined;
+		};
 		min?: number;
 		max?: number;
 	} = $props();
@@ -28,7 +32,8 @@
 		class="border"
 		on:click={() => {
 			if (!min || count > min) count--;
-			onValueChange && onValueChange('decrement', count);
+			// onValueChange && onValueChange('decrement', count);
+			counterActions && counterActions.decrement && counterActions.decrement(count);
 		}}
 		disabled={!!min && count <= min}
 	>
@@ -43,7 +48,8 @@
 		on:change={(e) => {
 			if (max && count > max) count = max;
 			if (min && count < min) count = min;
-			onValueChange && onValueChange('input', count);
+			// onValueChange && onValueChange('input', count);
+			counterActions && counterActions.input && counterActions.input(count);
 		}}
 	/>
 
@@ -52,7 +58,8 @@
 		class="border"
 		on:click={() => {
 			if (!max || count < max) count++;
-			onValueChange && onValueChange('increment', count);
+			// onValueChange && onValueChange('increment', count);
+			counterActions && counterActions.increment && counterActions.increment(count);
 		}}
 		disabled={!!max && count >= max}
 	>
