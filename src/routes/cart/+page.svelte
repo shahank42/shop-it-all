@@ -10,13 +10,17 @@
 <section class="w-full bg-background py-8 text-foreground md:py-12">
 	<MaxWidthWrapper class="grid grid-cols-1 gap-8 md:grid-cols-[2fr_1fr]">
 		<div class="flex flex-col gap-6">
-			<h1 class="text-3xl font-semibold">My Cart</h1>
-			<p class="">
-				Your cart is empty! Looks like it's <a
-					href="/"
-					class={cn(buttonVariants({ variant: 'link' }), 'px-0')}>shopping time!</a
-				>
-			</p>
+			<div class="flex flex-col">
+				<h1 class="text-3xl font-semibold">My Cart</h1>
+				<p class="">
+					Your cart is empty! Looks like it's time to go <a
+						href="/"
+						class={cn(buttonVariants({ variant: 'link' }), 'px-0')}
+					>
+						shopping!
+					</a>
+				</p>
+			</div>
 			<div class="flex flex-col gap-3">
 				{#each $cart.items as item}
 					<CartCard {item} />
