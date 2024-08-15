@@ -6,14 +6,12 @@
 	import { ShoppingCartIcon } from 'lucide-svelte';
 
 	const {
-		interacted = false,
 		product
 	}: {
-		interacted?: boolean;
 		product: Product;
 	} = $props();
 
-	let hasInteracted = $state(interacted);
+	let hasInteracted = $state($cart.items.some((item) => item.id === product.id));
 </script>
 
 {#if hasInteracted}

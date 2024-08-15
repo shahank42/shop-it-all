@@ -18,15 +18,18 @@
 	<CardContent class="flex h-full w-full flex-col justify-between py-6">
 		<div class="flex flex-col">
 			<h3 class="text-md line-clamp-2 font-heading leading-5 md:text-lg">{item.title}</h3>
-			<h4 class="text-md font-heading font-semibold md:text-lg">
-				{formatPrice(item.price, item.currency)}
-			</h4>
+			<div class="flex items-center justify-between">
+				<h4 class="text-md font-heading font-semibold md:text-lg">
+					{formatPrice(item.price, item.currency)}
+				</h4>
+				<p class="text-sm font-bold">{item.stock} in stock</p>
+			</div>
 		</div>
 
 		<div class="flex w-full items-center justify-between">
 			<Counter
 				min={1}
-				max={5}
+				max={item.stock}
 				value={item.quantity}
 				counterActions={{
 					increment: () => cart.addItem(item),
