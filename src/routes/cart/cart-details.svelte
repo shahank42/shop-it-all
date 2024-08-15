@@ -3,8 +3,8 @@
 	import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '$lib/components/ui/card';
 	import { Input } from '$lib/components/ui/input';
 	import { Label } from '$lib/components/ui/label';
-	import { Separator } from '$lib/components/ui/separator';
 	import { cart } from '$lib/stores/cartStore';
+	import type { Discount } from '$lib/types';
 	import { formatPrice } from '$lib/utils';
 	import { ChevronRight, X } from 'lucide-svelte';
 
@@ -19,21 +19,21 @@
 	<CardContent class="flex flex-col gap-6">
 		<div class="flex flex-col gap-1">
 			<div class="flex w-full items-center justify-between">
-				<span class="font-heading text-md">Subtotal:</span>
-				<span class="font-heading text-md font-bold">{formatPrice($cart.subTotal, 'INR')}</span>
+				<span class="text-md font-heading">Subtotal:</span>
+				<span class="text-md font-heading font-bold">{formatPrice($cart.subTotal, 'INR')}</span>
 			</div>
 
 			<div class="flex w-full items-center justify-between">
-				<span class="font-heading text-md">Discount:</span>
-				<span class="font-heading text-md font-bold">
+				<span class="text-md font-heading">Discount:</span>
+				<span class="text-md font-heading font-bold">
 					{formatPrice($cart.discount ? $cart.total - $cart.subTotal : 0, 'INR')}
 				</span>
 			</div>
 		</div>
 
 		<div class="flex w-full items-center justify-between">
-			<span class="font-heading text-md">Total:</span>
-			<span class="font-heading text-md font-bold">{formatPrice($cart.total, 'INR')}</span>
+			<span class="text-md font-heading">Total:</span>
+			<span class="text-md font-heading font-bold">{formatPrice($cart.total, 'INR')}</span>
 		</div>
 
 		{#if $cart.discount}

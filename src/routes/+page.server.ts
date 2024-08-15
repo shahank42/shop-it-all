@@ -2,10 +2,12 @@ import { fail, redirect } from '@sveltejs/kit';
 
 import type { Actions, PageServerLoad } from './$types';
 import { lucia } from '$lib/server/auth';
+import { getProducts } from '$lib/server/db/queries/products';
 
 export const load: PageServerLoad = async ({ locals }) => {
 	return {
-		user: locals.user
+		user: locals.user,
+		products: await getProducts(),
 	};
 };
 

@@ -1,5 +1,5 @@
 import type { Cart, Discount, Product } from "$lib/types";
-import { getDiscount } from "$lib/utils";
+import { getDiscountLocal } from "$lib/utils";
 import { writable } from "svelte/store"
 
 const initialState: Cart = {
@@ -85,9 +85,10 @@ const createCart = () => {
     ),
 
     setDiscount: (code: string) => (
+      // setDiscount: (discount: Discount) => (
       update((state) => {
         // TODO: refactor this golang-esque thing with proper error handling
-        const discount = getDiscount(code);
+        const discount = getDiscountLocal(code);
         if (discount == null)
           return {
             ...state,

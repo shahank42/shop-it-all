@@ -70,7 +70,7 @@ export const formatPrice = (value: number, currency: string) => {
 	})).format(value)
 }
 
-export const getDiscount = ((code: string): Discount | null => {
+export const getDiscountLocal = ((code: string): Discount | null => {
 	const discount = discounts.filter((discount) => discount.code === code)[0]
 	if (!discount) return null;
 
