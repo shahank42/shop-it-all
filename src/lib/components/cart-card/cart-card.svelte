@@ -6,6 +6,7 @@
 	import { Card, CardContent } from '../ui/card';
 	import { cart } from '$lib/stores/cartStore';
 	import Counter from './counter.svelte';
+	import CartItemCardCounter from '../cart-item-card-counter.svelte';
 
 	let { item }: { item: CartItem } = $props();
 </script>
@@ -31,22 +32,28 @@
 		</div>
 
 		<div class="flex w-full items-center justify-between">
-			<Counter
-				min={1}
-				max={item.stock}
-				value={item.quantity}
-				counterActions={{
-					increment: () => cart.addItem(item),
-					decrement: () => cart.removeItem(item.id),
-					input: (value) => cart.setQuantityOf(item.id, value)
-				}}
-			/>
+			<CartItemCardCounter {item} />
 
 			<Button
 				variant="destructive"
 				size="icon"
-				on:click={() => {
+				on:click={async () => {
 					cart.deleteItem(item.id);
+
+					try {
+						const response = await fetch('/api/cart/items', {
+							method: 'DELETE',
+							headers: { 'Content-Type': 'application/json' },
+							body: JSON.stringify({
+								userId: 'amixf7rgvzslzuxh',
+								item: item,
+								deleteItem: true
+							})
+						});
+						if (!response.ok) throw new Error('Failed to delete item from cart');
+					} catch (error) {
+						console.error('Error deleting item from cart:', error);
+					}
 				}}
 			>
 				<Trash2Icon />

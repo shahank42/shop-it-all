@@ -12,7 +12,6 @@
 	}: {
 		user: User | null;
 	} = $props();
-
 </script>
 
 <div class="sticky top-0 z-50">
@@ -28,21 +27,21 @@
 			<ModeToggle />
 
 			<a href="/cart" class={cn(buttonVariants({ variant: 'default' }), 'flex gap-2 font-body')}>
-				<ShoppingCartIcon /> <strong>({$cart.items.length})</strong>
+				<ShoppingCartIcon /> <strong>({$cart.items ? $cart.items.length : 0})</strong>
 			</a>
 
-				{#if user}
-					<form method="post" action="/?/logout" use:enhance>
-						<Button type="submit" variant="outline">Logout</Button>
-					</form>
-				{:else}
-					<a
-						href="/login/github"
-						class={cn(buttonVariants({ variant: 'outline' }), 'flex gap-2 font-body')}
-					>
-						<Github /> Login
-					</a>
-				{/if}
+			{#if user}
+				<form method="post" action="/?/logout" use:enhance>
+					<Button type="submit" variant="outline">Logout</Button>
+				</form>
+			{:else}
+				<a
+					href="/login/github"
+					class={cn(buttonVariants({ variant: 'outline' }), 'flex gap-2 font-body')}
+				>
+					<Github /> Login
+				</a>
+			{/if}
 		</nav>
 	</header>
 </div>

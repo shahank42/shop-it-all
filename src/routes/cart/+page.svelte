@@ -7,7 +7,6 @@
 	import { buttonVariants } from '$lib/components/ui/button';
 
 	const { form } = $props();
-	console.log(form);
 </script>
 
 <section class="w-full bg-background py-8 text-foreground md:py-12">

@@ -6,6 +6,7 @@ import { db } from "$lib/server/db/db";
 import { usersTable } from "$lib/server/db/schemas/users";
 import { eq } from "drizzle-orm";
 import { OAuth2RequestError } from "arctic";
+import { user } from "$lib/stores/userStore";
 
 export async function GET(event: RequestEvent): Promise<Response> {
   const code = event.url.searchParams.get("code");
@@ -52,7 +53,6 @@ export async function GET(event: RequestEvent): Promise<Response> {
         github_id: githubUser.id,
         username: githubUser.login
       })
-
 
       const session = await lucia.createSession(userId, {});
       const sessionCookie = lucia.createSessionCookie(session.id);

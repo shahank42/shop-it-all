@@ -4,12 +4,13 @@
 	import { cart } from '$lib/stores/cartStore';
 	import type { Product } from '$lib/types';
 	import { ShoppingCartIcon } from 'lucide-svelte';
-	import ProductCardCounter from './product-card-counter.svelte';
 
 	const {
-		product
+		product,
+		userId
 	}: {
 		product: Product;
+		userId: string | null;
 	} = $props();
 
 	let hasInteracted = $state($cart.items.some((item) => item.id === product.id));
@@ -18,9 +19,26 @@
 {#if hasInteracted}
 	<Motion initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} let:motion>
 		<Button
-			on:click={() => {
+			on:click={async () => {
 				hasInteracted = !hasInteracted;
 				cart.deleteItem(product.id);
+
+				if (userId) {
+					try {
+						const response = await fetch('/api/cart/items', {
+							method: 'DELETE',
+							headers: { 'Content-Type': 'application/json' },
+							body: JSON.stringify({
+								userId,
+								item: { ...product, quantity: 1 },
+								deleteItem: true
+							})
+						});
+						if (!response.ok) throw new Error('Failed to delete item from cart');
+					} catch (error) {
+						console.error('Error deleting item from cart:', error);
+					}
+				}
 			}}
 			class="hidden w-full overflow-hidden lg:block"
 			variant="default"
@@ -37,9 +55,22 @@
 {:else}
 	<Motion initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} let:motion>
 		<Button
-			on:click={() => {
+			on:click={async () => {
 				hasInteracted = !hasInteracted;
 				cart.addItem(product);
+
+				if (userId) {
+					try {
+						const response = await fetch('/api/cart/items', {
+							method: 'POST',
+							headers: { 'Content-Type': 'application/json' },
+							body: JSON.stringify({ userId, item: { ...product, quantity: 1 } })
+						});
+						if (!response.ok) throw new Error('Failed to add item to cart');
+					} catch (error) {
+						console.error('Error adding item to cart:', error);
+					}
+				}
 			}}
 			class="w-full overflow-hidden"
 			variant="secondary"

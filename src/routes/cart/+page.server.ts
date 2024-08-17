@@ -9,7 +9,6 @@ export const load: PageServerLoad = async ({ locals }) => {
 
 export const actions: Actions = {
   discount: async (event) => {
-    console.log(event)
     return {
       event
     }

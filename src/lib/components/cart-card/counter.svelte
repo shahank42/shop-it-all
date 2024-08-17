@@ -15,9 +15,9 @@
 	}: {
 		value: number;
 		counterActions?: {
-			increment?: (value: number) => void | undefined;
-			decrement?: (value: number) => void | undefined;
-			input?: (value: number) => void | undefined;
+			increment?: (value: number) => void | undefined | Promise<void | undefined>;
+			decrement?: (value: number) => void | undefined | Promise<void | undefined>;
+			input?: (value: number) => void | undefined | Promise<void | undefined>;
 		};
 		min?: number;
 		max?: number;
@@ -29,9 +29,9 @@
 <div class="flex items-center gap-1">
 	<Button
 		size="icon"
-		on:click={() => {
+		on:click={async () => {
 			if (min !== undefined && count > min) count--;
-			counterActions && counterActions.decrement && counterActions.decrement(count);
+			counterActions && counterActions.decrement && (await counterActions.decrement(count));
 		}}
 		disabled={!!min && count <= min}
 	>
@@ -43,18 +43,18 @@
 		id="quantity"
 		class="w-10 text-center font-heading [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
 		bind:value={count}
-		on:change={(e) => {
-			if (max && count > max) count = max;
-			if (min && count < min) count = min;
-			counterActions && counterActions.input && counterActions.input(count);
+		on:change={async (e) => {
+			if (max !== undefined && count > max) count = max;
+			if (min !== undefined && count < min) count = min;
+			counterActions && counterActions.input && (await counterActions.input(count));
 		}}
 	/>
 
 	<Button
 		size="icon"
-		on:click={() => {
+		on:click={async () => {
 			if (max !== undefined && count < max) count++;
-			counterActions && counterActions.increment && counterActions.increment(count);
+			counterActions && counterActions.increment && (await counterActions.increment(count));
 		}}
 		disabled={!!max && count >= max}
 	>
