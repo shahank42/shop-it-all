@@ -8,7 +8,7 @@
 	const { data } = $props();
 
 	onMount(() => {
-		if (data.userCartItems) {
+		if (data.userCartItems.length !== 0) {
 			cart.clear();
 			for (const item of data.userCartItems) {
 				// const offlineItem = $cart.items.find((iitem) => iitem.id === item.id);
