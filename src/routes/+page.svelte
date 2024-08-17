@@ -24,7 +24,7 @@
 </script>
 
 <section class="w-full bg-background py-8 text-foreground md:py-12">
-	<MaxWidthWrapper class="flex flex-col gap-12 px-10">
+	<MaxWidthWrapper class="flex flex-col gap-12">
 		<div class="flex flex-col">
 			<h1 class="text-3xl font-bold tracking-tight md:text-4xl">Fresh fits just for you!</h1>
 			<p class="text-md font-body text-muted-foreground md:text-lg">
