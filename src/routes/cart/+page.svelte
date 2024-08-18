@@ -26,7 +26,7 @@
 </script>
 
 <section class="w-full bg-background py-8 text-foreground md:py-12">
-	<MaxWidthWrapper class="grid grid-cols-1 gap-8 md:grid-cols-[2fr_1fr]">
+	<MaxWidthWrapper class="flex flex-col-reverse gap-8 md:grid md:grid-cols-[2fr_1fr]">
 		<div class="flex flex-col gap-6">
 			<div class="flex flex-col">
 				<h1 class="text-3xl font-semibold">My Cart</h1>
@@ -42,9 +42,11 @@
 				{/if}
 			</div>
 			<div class="flex flex-col gap-3">
-				{#each $cart.items as item}
-					<CartCard {item} userId={data.user?.id || null} />
-				{/each}
+				{#key $cart.items}
+					{#each $cart.items as item}
+						<CartCard {item} userId={data.user?.id || null} />
+					{/each}
+				{/key}
 			</div>
 		</div>
 

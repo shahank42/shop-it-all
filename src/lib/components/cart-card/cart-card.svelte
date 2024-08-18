@@ -7,6 +7,7 @@
 	import { cart } from '$lib/stores/cartStore';
 	import Counter from './counter.svelte';
 	import CartItemCardCounter from '../cart-item-card-counter.svelte';
+	import { invalidateAll } from '$app/navigation';
 
 	let { item, userId }: { item: CartItem; userId: string | null } = $props();
 </script>
@@ -39,6 +40,9 @@
 				size="icon"
 				on:click={async () => {
 					cart.deleteItem(item.id);
+					console.table($cart)
+					// const storedCart = localStorage.getItem('cart');
+					// if (storedCart) $cart = JSON.parse(storedCart);
 
 					if (userId) {
 						try {
@@ -56,6 +60,7 @@
 							console.error('Error deleting item from cart:', error);
 						} finally {
 							// console.log('actually updated db');
+							invalidateAll();
 						}
 					}
 				}}

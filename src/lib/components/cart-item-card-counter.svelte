@@ -6,14 +6,13 @@
 
 	let { item, userId }: { item: CartItem; userId: string | null } = $props();
 
-	let val = $state($cart.items.find((iitem) => iitem.id === item.id)?.quantity);
-	console.log(val);
+	// let val = $state($cart.items.find((iitem) => iitem.id === item.id)?.quantity);
 </script>
 
 <Counter
 	min={0}
 	max={item.stock}
-	value={val || 1}
+	value={item.quantity}
 	counterActions={{
 		increment: async () => {
 			cart.addItem(item);
@@ -60,7 +59,7 @@
 					console.error('Error deleting item from cart:', error);
 				} finally {
 					console.log('actually updated db');
-					// invalidateAll();
+					invalidateAll();
 				}
 			}
 		},
