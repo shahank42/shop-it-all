@@ -4,35 +4,10 @@
 	import { Input } from '$lib/components/ui/input';
 	import { Label } from '$lib/components/ui/label';
 	import { cart } from '$lib/stores/cartStore';
-	import type { Cart, CartItem, Discount } from '$lib/types';
 	import { formatPrice } from '$lib/utils';
 	import { ChevronRight, X } from 'lucide-svelte';
 
 	let userDiscountCode = $state($cart.discount?.code);
-	// $cart.items.forEach((item) => console.table(item));
-	console.log($cart);
-
-	const getCartSubtotal = (items: CartItem[]) => {
-		let subTotal = 0;
-		for (const item of items) subTotal += item.price * item.quantity;
-		return subTotal;
-	};
-
-	const applyCartDiscount = (subTotal: number, discount: Discount) => {
-		if (discount) {
-			switch (discount.type) {
-				case 'flat':
-					return Math.max(0, subTotal - discount.value);
-				case 'percentage':
-					return subTotal - (subTotal * discount.value) / 100;
-			}
-		} else {
-			return subTotal;
-		}
-	};
-
-	let subTotal = $state(getCartSubtotal($cart.items));
-	let total = $derived(subTotal);
 </script>
 
 <Card class="h-fit">
@@ -75,7 +50,6 @@
 							variant="ghost"
 							on:click={() => {
 								cart.removeDiscount();
-								// total = subTotal;
 								userDiscountCode = '';
 							}}
 						>

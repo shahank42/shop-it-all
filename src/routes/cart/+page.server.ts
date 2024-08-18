@@ -1,6 +1,5 @@
 import type { Actions } from "@sveltejs/kit";
 import type { PageServerLoad } from "./$types";
-import { getDiscountLocal } from "$lib/utils";
 import { getCartItemsWithProducts } from "$lib/server/db/queries/cartItems";
 import type { CartItem } from "$lib/types";
 import { getProducts } from "$lib/server/db/queries/products";
@@ -14,13 +13,4 @@ export const load: PageServerLoad = async ({ locals }) => {
     productsPromise: getProducts(),
     userCartItems,
   };
-};
-
-export const actions: Actions = {
-  discount: async (event) => {
-    // const discount = getDiscountLocal()
-    return {
-
-    }
-  }
 };

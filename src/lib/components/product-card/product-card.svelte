@@ -1,18 +1,11 @@
 <script lang="ts">
-	import ProductCardCounter from '../cart-item-card-counter.svelte';
-
-	import type { CartItem, Product } from '$lib/types';
-	import SquareCard from '../ui/fancy-card/SquareCard.svelte';
-	import AddToCartButton from './add-to-cart-button.svelte';
-	import { cn, formatPrice } from '$lib/utils';
+	import type { Product } from '$lib/types';
+	import { formatPrice } from '$lib/utils';
 	import { cart } from '$lib/stores/cartStore';
-	import Counter from '../cart-card/counter.svelte';
-	import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '../ui/card';
-	import CartItemCardCounter from '../cart-item-card-counter.svelte';
+	import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 	import ProductCardCartInfo from './product-card-cart-info.svelte';
 
 	let { product, userId }: { product: Product; userId: string | null } = $props();
-	// let inCart = $state(false);
 </script>
 
 <Card class="flex flex-col">
@@ -39,5 +32,9 @@
 		</div>
 	</CardContent>
 
-	<ProductCardCartInfo cartItem={$cart.items.find((item) => item.id === product.id)} {product} {userId} />
+	<ProductCardCartInfo
+		cartItem={$cart.items.find((item) => item.id === product.id)}
+		{product}
+		{userId}
+	/>
 </Card>

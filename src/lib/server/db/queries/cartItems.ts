@@ -1,4 +1,4 @@
-import type { CartItem, Product } from "$lib/types"
+import type { CartItem } from "$lib/types"
 import { and, eq, sql } from "drizzle-orm";
 import { db } from "../db"
 import { cartItemsTable } from "../schemas/cartItems"

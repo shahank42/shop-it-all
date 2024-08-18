@@ -1,4 +1,4 @@
-import type { Cart, Product, Discount, CartItem } from "$lib/types";
+import type { Cart, Product, CartItem } from "$lib/types";
 import { getDiscountLocal } from "$lib/utils";
 import { writable } from "svelte/store";
 
@@ -56,10 +56,8 @@ const createCart = () => {
         const index = state.items.findIndex((iitem) => iitem.id === product.id);
         if (index !== -1) {
           state.items[index].quantity = state.items[index].quantity + 1;
-          // console.log(item.quantity)
         }
         else {
-          // item = { ...product, quantity: 1 }
           let item: CartItem = { ...product, quantity: 1 } as CartItem;
           state.items.push(item)
         };

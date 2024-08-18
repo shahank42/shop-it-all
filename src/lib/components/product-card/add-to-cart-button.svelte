@@ -4,7 +4,6 @@
 	import { cart } from '$lib/stores/cartStore';
 	import type { Product } from '$lib/types';
 	import { ShoppingCartIcon } from 'lucide-svelte';
-	import { invalidate, invalidateAll } from '$app/navigation';
 
 	const {
 		product,
@@ -39,7 +38,6 @@
 					} catch (error) {
 						console.error('Error deleting item from cart:', error);
 					} finally {
-						console.log('actually updated db');
 						// invalidateAll();
 					}
 				}
@@ -74,7 +72,6 @@
 					} catch (error) {
 						console.error('Error adding item to cart:', error);
 					} finally {
-						console.log('actually updated db');
 						// invalidateAll();
 					}
 				}

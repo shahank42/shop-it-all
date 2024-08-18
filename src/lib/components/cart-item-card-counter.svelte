@@ -1,12 +1,9 @@
 <script lang="ts">
-	import type { CartItem, Product } from '$lib/types';
+	import type { CartItem } from '$lib/types';
 	import { cart } from '$lib/stores/cartStore';
 	import Counter from './cart-card/counter.svelte';
-	import { invalidateAll } from '$app/navigation';
 
 	let { item, userId }: { item: CartItem; userId: string | null } = $props();
-
-	// let val = $state($cart.items.find((iitem) => iitem.id === item.id)?.quantity);
 </script>
 
 <Counter
@@ -33,7 +30,6 @@
 				} catch (error) {
 					console.error('Error adding item to cart:', error);
 				} finally {
-					console.log('actually updated db');
 					// invalidateAll();
 				}
 			}
@@ -58,8 +54,7 @@
 				} catch (error) {
 					console.error('Error deleting item from cart:', error);
 				} finally {
-					console.log('actually updated db');
-					invalidateAll();
+					// invalidateAll();
 				}
 			}
 		},
@@ -78,14 +73,12 @@
 						body: JSON.stringify({
 							userId,
 							item: { ...item, quantity: Math.abs(oldItemQuantity - itemQuantity) }
-							// item: { ...item, quantity: 69 }
 						})
 					});
 					if (!response.ok) throw new Error('Failed to add item to cart');
 				} catch (error) {
 					console.error('Error adding item to cart:', error);
 				} finally {
-					console.log('actually updated db');
 					// invalidateAll();
 				}
 			}
