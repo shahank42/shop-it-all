@@ -8,7 +8,7 @@
 	import Counter from './counter.svelte';
 	import CartItemCardCounter from '../cart-item-card-counter.svelte';
 
-	let { item }: { item: CartItem } = $props();
+	let { item, userId }: { item: CartItem; userId: string | null } = $props();
 </script>
 
 <Card class="flex h-44 md:h-48">
@@ -32,7 +32,7 @@
 		</div>
 
 		<div class="flex w-full items-center justify-between">
-			<CartItemCardCounter {item} />
+			<CartItemCardCounter {item} {userId} />
 
 			<Button
 				variant="destructive"
@@ -53,6 +53,8 @@
 						if (!response.ok) throw new Error('Failed to delete item from cart');
 					} catch (error) {
 						console.error('Error deleting item from cart:', error);
+					} finally {
+						console.log('actually updated db');
 					}
 				}}
 			>

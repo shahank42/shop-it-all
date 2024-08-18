@@ -65,6 +65,7 @@ const createCart = () => {
         };
 
         state.subTotal += product.price;
+        console.log(state.subTotal)
         calculateAndSetDiscount(state);
 
         return state;

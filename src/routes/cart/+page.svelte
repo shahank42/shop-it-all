@@ -5,8 +5,24 @@
 	import { cn } from '$lib/utils';
 	import CartDetails from './cart-details.svelte';
 	import { buttonVariants } from '$lib/components/ui/button';
+	import { onMount } from 'svelte';
 
-	const { form } = $props();
+	const { data } = $props();
+
+	// onMount(() => {
+	// 	if (data.userCartItems.length !== 0) {
+	// 		cart.clear();
+	// 		for (const item of data.userCartItems) {
+	// 			// const offlineItem = $cart.items.find((iitem) => iitem.id === item.id);
+	// 			// if (offlineItem) {
+	// 			// 	cart.setQuantityOf(offlineItem.id, offlineItem.quantity);
+	// 			// } else {
+	// 			cart.addItem(item);
+	// 			cart.setQuantityOf(item.id, item.quantity);
+	// 			// }
+	// 		}
+	// 	}
+	// });
 </script>
 
 <section class="w-full bg-background py-8 text-foreground md:py-12">
@@ -27,7 +43,7 @@
 			</div>
 			<div class="flex flex-col gap-3">
 				{#each $cart.items as item}
-					<CartCard {item} />
+					<CartCard {item} userId={data.user?.id || null} />
 				{/each}
 			</div>
 		</div>

@@ -2,6 +2,7 @@
 	import type { CartItem, Product } from '$lib/types';
 	import { cart } from '$lib/stores/cartStore';
 	import Counter from './cart-card/counter.svelte';
+	import { invalidateAll } from '$app/navigation';
 
 	let { item, userId }: { item: CartItem; userId: string | null } = $props();
 
@@ -31,6 +32,9 @@
 					if (!response.ok) throw new Error('Failed to add item to cart');
 				} catch (error) {
 					console.error('Error adding item to cart:', error);
+				} finally {
+					console.log('actually updated db');
+					invalidateAll();
 				}
 			}
 		},
@@ -53,6 +57,9 @@
 					if (!response.ok) throw new Error('Failed to delete item from cart');
 				} catch (error) {
 					console.error('Error deleting item from cart:', error);
+				} finally {
+					console.log('actually updated db');
+					invalidateAll();
 				}
 			}
 		},
@@ -76,6 +83,9 @@
 					if (!response.ok) throw new Error('Failed to add item to cart');
 				} catch (error) {
 					console.error('Error adding item to cart:', error);
+				} finally {
+					console.log('actually updated db');
+					invalidateAll();
 				}
 			}
 		}

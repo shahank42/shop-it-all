@@ -9,7 +9,6 @@ export const load: LayoutServerLoad = async ({ locals }) => {
 
   return {
     user: locals.user,
-    products: await getProducts(),
     userCartItems,
   };
 };
