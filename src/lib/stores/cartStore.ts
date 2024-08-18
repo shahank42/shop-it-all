@@ -53,14 +53,14 @@ const createCart = () => {
 
     addItem: (product: Product) =>
       updateAndPersist((state) => {
-        let item: CartItem = {} as CartItem;
-        const index = state.items.findIndex((item) => item.id === product.id);
+        const index = state.items.findIndex((iitem) => iitem.id === product.id);
         if (index !== -1) {
-          item.quantity = state.items[index].quantity;
-          item.quantity += 1;
+          state.items[index].quantity = state.items[index].quantity + 1;
+          // console.log(item.quantity)
         }
         else {
-          item = { ...product, quantity: 1 }
+          // item = { ...product, quantity: 1 }
+          let item: CartItem = { ...product, quantity: 1 } as CartItem;
           state.items.push(item)
         };
 

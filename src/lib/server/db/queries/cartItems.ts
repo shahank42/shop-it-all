@@ -21,7 +21,7 @@ export const addProductToCart = async (userId: string, cartItem: CartItem) => {
   if (retrievedCartItem) {
     return db.run(sql`
       UPDATE ${cartItemsTable}
-      SET quantity = quantity + ${cartItem.quantity}
+      SET quantity = ${cartItem.quantity}
       WHERE user_id = ${userId} AND product_id = ${cartItem.id}
     `);
   }

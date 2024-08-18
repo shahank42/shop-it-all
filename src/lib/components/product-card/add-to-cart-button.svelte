@@ -40,7 +40,7 @@
 						console.error('Error deleting item from cart:', error);
 					} finally {
 						console.log('actually updated db');
-						invalidateAll();
+						// invalidateAll();
 					}
 				}
 			}}
@@ -75,7 +75,7 @@
 						console.error('Error adding item to cart:', error);
 					} finally {
 						console.log('actually updated db');
-						invalidateAll();
+						// invalidateAll();
 					}
 				}
 			}}

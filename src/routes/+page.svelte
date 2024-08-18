@@ -2,8 +2,25 @@
 	import MaxWidthWrapper from '$lib/components/max-width-wrapper.svelte';
 	import ProductCardSkeleton from '$lib/components/product-card/product-card-skeleton.svelte';
 	import ProductCard from '$lib/components/product-card/product-card.svelte';
+	import { cart } from '$lib/stores/cartStore.js';
+	import { onMount } from 'svelte';
 
 	const { data } = $props();
+
+	onMount(() => {
+		if (data.userCartItems.length !== 0) {
+			cart.clear();
+			for (const item of data.userCartItems) {
+				// const offlineItem = $cart.items.find((iitem) => iitem.id === item.id);
+				// if (offlineItem) {
+				// 	cart.setQuantityOf(offlineItem.id, offlineItem.quantity);
+				// } else {
+				cart.addItem(item);
+				cart.setQuantityOf(item.id, item.quantity);
+				// }
+			}
+		}
+	});
 </script>
 
 <section class="w-full bg-background py-8 text-foreground md:py-12">

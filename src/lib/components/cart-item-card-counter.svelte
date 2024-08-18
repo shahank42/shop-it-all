@@ -6,13 +6,14 @@
 
 	let { item, userId }: { item: CartItem; userId: string | null } = $props();
 
-	let value = $state($cart.items.find((iitem) => iitem.id === item.id)?.quantity);
+	let val = $state($cart.items.find((iitem) => iitem.id === item.id)?.quantity);
+	console.log(val);
 </script>
 
 <Counter
 	min={0}
 	max={item.stock}
-	value={value || 1}
+	value={val || 1}
 	counterActions={{
 		increment: async () => {
 			cart.addItem(item);
@@ -34,7 +35,7 @@
 					console.error('Error adding item to cart:', error);
 				} finally {
 					console.log('actually updated db');
-					invalidateAll();
+					// invalidateAll();
 				}
 			}
 		},
@@ -59,7 +60,7 @@
 					console.error('Error deleting item from cart:', error);
 				} finally {
 					console.log('actually updated db');
-					invalidateAll();
+					// invalidateAll();
 				}
 			}
 		},
@@ -78,6 +79,7 @@
 						body: JSON.stringify({
 							userId,
 							item: { ...item, quantity: Math.abs(oldItemQuantity - itemQuantity) }
+							// item: { ...item, quantity: 69 }
 						})
 					});
 					if (!response.ok) throw new Error('Failed to add item to cart');
@@ -85,7 +87,7 @@
 					console.error('Error adding item to cart:', error);
 				} finally {
 					console.log('actually updated db');
-					invalidateAll();
+					// invalidateAll();
 				}
 			}
 		}

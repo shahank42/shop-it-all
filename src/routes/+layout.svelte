@@ -8,21 +8,6 @@
 	// import { user } from '$lib/stores/userStore';
 
 	const { data, children } = $props();
-
-	onMount(() => {
-		if (data.userCartItems.length !== 0) {
-			cart.clear();
-			for (const item of data.userCartItems) {
-				// const offlineItem = $cart.items.find((iitem) => iitem.id === item.id);
-				// if (offlineItem) {
-				// 	cart.setQuantityOf(offlineItem.id, offlineItem.quantity);
-				// } else {
-				cart.addItem(item);
-				cart.setQuantityOf(item.id, item.quantity);
-				// }
-			}
-		}
-	});
 </script>
 
 <ModeWatcher />
