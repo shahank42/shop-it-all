@@ -9,14 +9,10 @@
 	import Counter from '../cart-card/counter.svelte';
 	import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '../ui/card';
 	import CartItemCardCounter from '../cart-item-card-counter.svelte';
+	import ProductCardCartInfo from './product-card-cart-info.svelte';
 
 	let { product, userId }: { product: Product; userId: string | null } = $props();
 	// let inCart = $state(false);
-	let cartItem: CartItem | undefined = $state(undefined);
-	$effect(() => {
-		cartItem = $cart.items.find((item) => item.id === product.id);
-		// inCart = $cart.items.some((item) => item.id === product.id);
-	});
 </script>
 
 <Card class="flex flex-col">
@@ -43,22 +39,5 @@
 		</div>
 	</CardContent>
 
-	{#key cartItem !== undefined}
-		<CardFooter class="px-3 md:px-6">
-			<div class="flex w-full justify-center gap-3">
-				{#if cartItem !== undefined}
-					<CartItemCardCounter item={cartItem} {userId} />
-				{/if}
-
-				<div
-					class={cn({
-						'w-full': !(cartItem !== undefined),
-						'sm:w-full': cartItem !== undefined
-					})}
-				>
-					<AddToCartButton {product} {userId} />
-				</div>
-			</div>
-		</CardFooter>
-	{/key}
+	<ProductCardCartInfo cartItem={$cart.items.find((item) => item.id === product.id)} {product} {userId} />
 </Card>
