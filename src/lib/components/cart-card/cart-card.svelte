@@ -40,21 +40,23 @@
 				on:click={async () => {
 					cart.deleteItem(item.id);
 
-					try {
-						const response = await fetch('/api/cart/items', {
-							method: 'DELETE',
-							headers: { 'Content-Type': 'application/json' },
-							body: JSON.stringify({
-								userId: 'amixf7rgvzslzuxh',
-								item: item,
-								deleteItem: true
-							})
-						});
-						if (!response.ok) throw new Error('Failed to delete item from cart');
-					} catch (error) {
-						console.error('Error deleting item from cart:', error);
-					} finally {
-						console.log('actually updated db');
+					if (userId) {
+						try {
+							const response = await fetch('/api/cart/items', {
+								method: 'DELETE',
+								headers: { 'Content-Type': 'application/json' },
+								body: JSON.stringify({
+									userId: userId,
+									item: item,
+									deleteItem: true
+								})
+							});
+							if (!response.ok) throw new Error('Failed to delete item from cart');
+						} catch (error) {
+							console.error('Error deleting item from cart:', error);
+						} finally {
+							// console.log('actually updated db');
+						}
 					}
 				}}
 			>
